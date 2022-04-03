@@ -36,12 +36,13 @@ stages:
   jobs:
   - job: Test
     steps:
-    - task: Pester@10 ## If a new version is out, you may have to increment this
+    - task: Pester Powershell unittest@2 ## If a new version is out, you may have to increment this
       inputs:
-        scriptFolder: "$(System.DefaultWorkingDirectory)/PowerShellModuleProject.Tests.ps1"
-        resultsFile: "$(System.DefaultWorkingDirectory)/PowerShellModuleProject.Tests.XML"
-        usePSCore: true
-        run32Bit: False
+        ItemSpec: "$(System.DefaultWorkingDirectory)/PowerShellModuleProject.Tests.ps1"
+        FailOnError: true
+        #resultsFile: "$(System.DefaultWorkingDirectory)/PowerShellModuleProject.Tests.XML"
+        #usePSCore: true
+        #run32Bit: False
     - task: PublishTestResults@2
       inputs:
         testResultsFormat: "NUnit"
